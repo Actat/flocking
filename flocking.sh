@@ -1,5 +1,9 @@
 #!/bin/sh
 
+video_length=5
+frame_rate=10
+frame_number=`expr $video_length \* $frame_rate`
+
 rm main.out
 rm -rf dat
 mkdir dat
