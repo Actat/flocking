@@ -25,6 +25,20 @@ int main(int argc, char* argv[])
 
             small_fish[j][2][0] += small_fish[j][2][1]; //\omega = \omega + \alpha
         }
+
+        char fname[50];
+        sprintf(fname, "dat/%d.dat", i);
+        FILE* fp = fopen(fname, "w");
+        if (fp == NULL) {
+            printf("failed to open file.\n");
+            exit(1);
+        }
+        for (int j = 0; j < fish_amount; j++) {
+            if (fabs(small_fish[j][0][0]) < field_x && fabs(small_fish[j][0][1] < field_y)) {
+                fprintf(fp, "%f, %f, %f, %f, x, y, v_x, v_y\n", small_fish[j][0][0], small_fish[j][0][1], small_fish[j][1][0], small_fish[j][1][1]);
+            }
+        }
+        fclose(fp);
     }
 
     return 0;
