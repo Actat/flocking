@@ -18,7 +18,8 @@ fi
 
 if [ -f main.out ]; then
     echo "コンパイルに成功したようです."
-#    echo "プログラムを実行し、連番ファイルを出力します."
+    echo "プログラムを実行し、連番ファイルを出力します."
+    ./main.out $frame_number
 else
     echo "コンパイルに失敗したようです."
     exit 0
