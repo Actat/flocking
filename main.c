@@ -12,6 +12,9 @@ int main(int argc, char* argv[])
 {
     if (argc != 2) {
         printf("argument is not correct\n");
+        for (int i = 0;i < argc; i++) {
+            printf("%d: %s\n", i, argv[i]);
+        }
         exit(1);
     }
     int max_step = atoi(argv[1]);
