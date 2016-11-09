@@ -5,7 +5,7 @@
 int main(int argc, char* argv[])
 {
     if (argc != 2) {
-        printf("argument is not correct");
+        printf("argument is not correct\n");
         return 0;
     }
     int max_step = atoi(argv[1]);
