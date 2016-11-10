@@ -62,7 +62,7 @@ i=0
 while [ $i -lt $frame_number ]
 do
     if [ -e eps/${i}.eps ]; then
-        convert eps/${i}.eps png/${i}.png
+        convert -density 500x500 eps/${i}.eps png/${i}.png
     else
         echo "eps/${i}.eps は存在しません."
     fi
