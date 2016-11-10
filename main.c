@@ -6,11 +6,14 @@
  * コマンドライン引数
  * argv[0] プログラムへのパス
  * argv[1] max_step 出力するファイルの個数
+ * argv[2] field_x
+ * argv[3] field_y
+ * argv[4] fish_amount
  */
 
 int main(int argc, char* argv[])
 {
-    if (argc != 2) {
+    if (argc != 5) {
         printf("argument is not correct\n");
         for (int i = 0;i < argc; i++) {
             printf("%d: %s\n", i, argv[i]);
@@ -18,9 +21,9 @@ int main(int argc, char* argv[])
         exit(1);
     }
     int max_step = atoi(argv[1]);
-    int field_x = 10000;
-    int field_y = 10000;
-    int fish_amount = 50;
+    int field_x = atoi(argv[2]);
+    int field_y = atoi(argv[3]);
+    int fish_amount = atoi(argv[4]);
     double small_fish[fish_amount][3][2]; // fish0[[x, y], [v_x, v_y], [\omega, \alpha]]
 
     for (int i = 0; i < max_step; i++) {
