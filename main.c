@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+#include <time.h>
 
 /*
  * コマンドライン引数
@@ -25,6 +26,17 @@ int main(int argc, char* argv[])
     int field_y = atoi(argv[3]);
     int fish_amount = atoi(argv[4]);
     double small_fish[fish_amount][3][2]; // fish0[[x, y], [v_x, v_y], [\omega, \alpha]]
+
+    // small_fishの初期条件をランダムに与える
+    srand((unsigned)time(NULL));
+    for (int i = 0; i < fish_amount; i++) {
+        small_fish[i][0][0] = (double)rand() / RAND_MAX * field_x;
+        small_fish[i][0][1] = (double)rand() / RAND_MAX * field_y;
+        small_fish[i][1][0] = (double)rand() / RAND_MAX * 100;
+        small_fish[i][1][1] = (double)rand() / RAND_MAX * 100;
+        small_fish[i][2][0] = (double)rand() / RAND_MAX;
+        small_fish[i][0][0] = 0;
+    }
 
     for (int i = 0; i < max_step; i++) {
         // 移動の処理
