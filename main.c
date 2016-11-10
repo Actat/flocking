@@ -46,8 +46,8 @@ int main(int argc, char* argv[])
             small_fish[j][0][1] += small_fish[j][1][1]; // y = y + v_y
 
             // \omega回る回転行列をかける
-            small_fish[j][1][0] = cos(small_fish[j][2][0]) * small_fish[j][1][0] + sin(small_fish[j][2][0]) * small_fish[j][1][1];
-            small_fish[j][1][1] = -1 * sin(small_fish[j][2][0]) * small_fish[j][1][0] + cos(small_fish[j][2][0]) * small_fish[j][1][1];
+            small_fish[j][1][0] = cos(small_fish[j][2][0]) * small_fish[j][1][0] - sin(small_fish[j][2][0]) * small_fish[j][1][1];
+            small_fish[j][1][1] = sin(small_fish[j][2][0]) * small_fish[j][1][0] + cos(small_fish[j][2][0]) * small_fish[j][1][1];
 
             //\omega = \omega + \alpha
             small_fish[j][2][0] += small_fish[j][2][1];
