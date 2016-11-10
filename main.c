@@ -35,7 +35,7 @@ int main(int argc, char* argv[])
         small_fish[i][1][0] = (double)rand() / RAND_MAX * 100;
         small_fish[i][1][1] = (double)rand() / RAND_MAX * 100;
         small_fish[i][2][0] = (double)rand() / RAND_MAX;
-        small_fish[i][0][0] = 0;
+        small_fish[i][2][1] = 0;
     }
 
     for (int i = 0; i < max_step; i++) {
