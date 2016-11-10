@@ -8,6 +8,7 @@ field_y=1000
 fish_amount=50
 
 rm main.out
+rm out.mp4
 rm -rf dat
 rm -rf eps
 rm -rf png
@@ -68,3 +69,14 @@ do
     fi
     i=`expr $i + 1`
 done
+
+echo "pngから動画を作ります"
+if [ -e png/0.png ]; then
+    ffmpeg -r $frame_rate -i png/%d.png -vcodec libx264 -pix_fmt yuv420p -r 60 out.mp4
+fi
+
+if [ -e out.mp4 ]; then
+    echo "出力が完了しました."
+else
+    echo "出力に失敗したようです."
+fi
