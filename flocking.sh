@@ -7,7 +7,6 @@ field_x=1000
 field_y=1000
 fish_amount=50
 
-rm main.out
 rm out.mp4
 rm -rf dat
 rm -rf eps
