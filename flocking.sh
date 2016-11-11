@@ -25,7 +25,7 @@ if [ -f main.out ]; then
     echo "コンパイルに成功したようです."
     echo "プログラムを実行し、連番ファイルを出力します."
     ./main.out $frame_number $field_x $field_y $fish_amount
-    echo "プログラムの実行が終了しました。"
+    echo "プログラムの実行が終了しました."
 else
     echo "コンパイルに失敗したようです."
     exit 0
@@ -69,7 +69,7 @@ do
     i=`expr $i + 1`
 done
 
-echo "pngから動画を作ります"
+echo "pngから動画を作ります."
 if [ -e png/0.png ]; then
     ffmpeg -r $frame_rate -i png/%d.png -vcodec libx264 -pix_fmt yuv420p -r 60 out.mp4
 fi
