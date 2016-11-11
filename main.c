@@ -25,35 +25,40 @@ int main(int argc, char* argv[])
     int field_x = atoi(argv[2]);
     int field_y = atoi(argv[3]);
     int fish_amount = atoi(argv[4]);
-    double small_fish[fish_amount][3][2]; // fish0[[x, y], [v_x, v_y], [\omega, \alpha]]
+    double small_fish[fish_amount][3][3]; // fish0[[x, y, \theta], [v, a, 0], [\omega, \alpha, 0]]
 
     // small_fishの初期条件をランダムに与える
     srand((unsigned)time(NULL));
     for (int i = 0; i < fish_amount; i++) {
         small_fish[i][0][0] = (double)rand() / RAND_MAX * field_x;
         small_fish[i][0][1] = (double)rand() / RAND_MAX * field_y;
+        small_fish[i][0][2] = (double)rand() / RAND_MAX;
         small_fish[i][1][0] = (double)rand() / RAND_MAX * 100;
-        small_fish[i][1][1] = (double)rand() / RAND_MAX * 100;
+        small_fish[i][1][1] = 0;
+        small_fish[i][1][2] = 0;
         small_fish[i][2][0] = (double)rand() / RAND_MAX;
         small_fish[i][2][1] = 0;
+        small_fish[i][2][2] = 0;
     }
 
     for (int i = 0; i < max_step; i++) {
         // 移動の処理
         for (int j = 0; j < fish_amount; j++) {
             // 並進
-            small_fish[j][0][0] += small_fish[j][1][0]; // x = x + v_x
-            small_fish[j][0][1] += small_fish[j][1][1]; // y = y + v_y
+            small_fish[j][0][0] += cos(small_fish[j][0][2]) * small_fish[j][1][0]; // x = x + v_x
+            small_fish[j][0][1] += sin(small_fish[j][0][2]) * small_fish[j][1][0]; // y = y + v_y
 
-            // \omega回る回転行列をかける
-            small_fish[j][1][0] = cos(small_fish[j][2][0]) * small_fish[j][1][0] - sin(small_fish[j][2][0]) * small_fish[j][1][1];
-            small_fish[j][1][1] = sin(small_fish[j][2][0]) * small_fish[j][1][0] + cos(small_fish[j][2][0]) * small_fish[j][1][1];
+            // \omega回転
+            small_fish[j][0][2] += small_fish[j][2][0];
 
-            //\omega = \omega + \alpha
+            // v = v + a
+            small_fish[j][1][0] += small_fish[j][1][1];
+
+            // \omega = \omega + \alpha
             small_fish[j][2][0] += small_fish[j][2][1];
         }
 
-        // フロッキング処理(\alphaを決める処理)
+        // フロッキング処理(a, \alphaを決める処理)
 
 
         // ファイル出力
@@ -67,7 +72,8 @@ int main(int argc, char* argv[])
         for (int j = 0; j < fish_amount; j++) {
             if (fabs(small_fish[j][0][0]) < field_x && fabs(small_fish[j][0][1] < field_y)) {
                 // 描画範囲内のもののみ出力
-                fprintf(fp, "%f, %f, %f, %f, x, y, v_x, v_y\n", small_fish[j][0][0], small_fish[j][0][1], small_fish[j][1][0], small_fish[j][1][1]);
+                fprintf(fp, "%f, %f, %f, %f, x, y, v_x, v_y\n"
+                        , small_fish[j][0][0], small_fish[j][0][1], cos(small_fish[j][0][2]) * small_fish[j][1][0], sin(small_fish[j][0][2]) * small_fish[j][1][0]);
             }
         }
         fclose(fp);
