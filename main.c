@@ -36,10 +36,10 @@ int main(int argc, char* argv[])
         small_fish[i][0][0] = ((double)rand() / RAND_MAX - 0.5) * 2 * field_x;
         small_fish[i][0][1] = ((double)rand() / RAND_MAX - 0.5) * 2 * field_y;
         small_fish[i][0][2] = (double)rand() / RAND_MAX;
-        small_fish[i][1][0] = (double)rand() / RAND_MAX * 100;
+        small_fish[i][1][0] = 1.67 / frame_rate;
         small_fish[i][1][1] = 0;
         small_fish[i][1][2] = 0;
-        small_fish[i][2][0] = (double)rand() / RAND_MAX;
+        small_fish[i][2][0] = (double)rand() / RAND_MAX / frame_rate;
         small_fish[i][2][1] = 0;
         small_fish[i][2][2] = 0;
     }
@@ -76,7 +76,8 @@ int main(int argc, char* argv[])
             if (fabs(small_fish[j][0][0]) < field_x && fabs(small_fish[j][0][1] < field_y)) {
                 // 描画範囲内のもののみ出力
                 fprintf(fp, "%f, %f, %f, %f, x, y, v_x, v_y\n"
-                        , small_fish[j][0][0], small_fish[j][0][1], cos(small_fish[j][0][2]) * small_fish[j][1][0], sin(small_fish[j][0][2]) * small_fish[j][1][0]);
+                        , small_fish[j][0][0], small_fish[j][0][1]
+                        , cos(small_fish[j][0][2]) * small_fish[j][1][0] * frame_rate, sin(small_fish[j][0][2]) * small_fish[j][1][0] * frame_rate);
             }
         }
         fclose(fp);

@@ -3,8 +3,8 @@
 video_length=5
 frame_rate=10
 frame_number=`expr $video_length \* $frame_rate`
-field_x=1000
-field_y=1000
+field_x=50
+field_y=50
 fish_amount=50
 
 rm out.mp4
