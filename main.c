@@ -6,25 +6,28 @@
 /*
  * コマンドライン引数
  * argv[0] プログラムへのパス
- * argv[1] max_step 出力するファイルの個数
- * argv[2] field_x
- * argv[3] field_y
- * argv[4] fish_amount
+ * argv[1] video_length
+ * argv[2] frame_rate
+ * argv[3] field_x
+ * argv[4] field_y
+ * argv[5] fish_amount
  */
 
 int main(int argc, char* argv[])
 {
-    if (argc != 5) {
+    if (argc != 6) {
         printf("argument is not correct\n");
         for (int i = 0;i < argc; i++) {
             printf("%d: %s\n", i, argv[i]);
         }
         exit(1);
     }
-    int max_step = atoi(argv[1]);
-    int field_x = atoi(argv[2]);
-    int field_y = atoi(argv[3]);
-    int fish_amount = atoi(argv[4]);
+    int video_length = atoi(argv[1]);
+    int frame_rate = atoi(argv[2]);
+    int max_step = video_length * frame_rate;
+    int field_x = atoi(argv[3]);
+    int field_y = atoi(argv[4]);
+    int fish_amount = atoi(argv[5]);
     double small_fish[fish_amount][3][3]; // fish0[[x, y, \theta], [v, a, 0], [\omega, \alpha, 0]]
 
     // small_fishの初期条件をランダムに与える

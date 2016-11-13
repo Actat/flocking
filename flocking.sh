@@ -24,7 +24,7 @@ fi
 if [ -f main.out ]; then
     echo "コンパイルに成功したようです."
     echo "プログラムを実行し、連番ファイルを出力します."
-    ./main.out $frame_number $field_x $field_y $fish_amount
+    ./main.out $video_length $frame_rate $field_x $field_y $fish_amount
     echo "プログラムの実行が終了しました."
 else
     echo "コンパイルに失敗したようです."
