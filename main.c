@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <math.h>
 #include <time.h>
+#include <stdbool.h>
 
 /*
  * コマンドライン引数
@@ -45,6 +46,26 @@ int main(int argc, char* argv[])
     }
 
     for (int i = 0; i < max_step; i++) {
+        // フロッキング処理(a, \alphaを決める処理)
+        for (int j = 0; j < fish_amount; j++) {
+            int fish_in_view = 0;
+            double view_r = 2;
+            double view_theta = 2;
+            for (int k = 0; k < fish_amount; k++) {
+                if (k != j) {
+                    // 視野範囲の中に入っている同種の魚を抽出
+                    double relative_posi_vect_x = small_fish[k][0][0] - small_fish[j][0][0];
+                    double relative_posi_vect_y = small_fish[k][0][1] - small_fish[j][0][1];
+                    double relative_posi_vect_r = sqrt(relative_posi_vect_x * relative_posi_vect_x + relative_posi_vect_y * relative_posi_vect_y);
+                    double relative_posi_vect_theta = acos(relative_posi_vect_x / relative_posi_vect_r);
+                    if (relative_posi_vect_r < view_r && relative_posi_vect_theta - small_fish[j][0][2] < view_theta) {
+                        fish_in_view++;
+                    }
+                }
+            }
+
+        }
+
         // 移動の処理
         for (int j = 0; j < fish_amount; j++) {
             // 並進
@@ -60,9 +81,6 @@ int main(int argc, char* argv[])
             // \omega = \omega + \alpha
             small_fish[j][2][0] += small_fish[j][2][1];
         }
-
-        // フロッキング処理(a, \alphaを決める処理)
-
 
         // ファイル出力
         char fname[50];
