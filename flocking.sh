@@ -7,7 +7,7 @@ field_x=50
 field_y=50
 fish_amount=50
 
-rm out.mp4
+rm -f out.mp4
 rm -rf dat
 rm -rf eps
 rm -rf png
