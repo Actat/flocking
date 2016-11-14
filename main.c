@@ -73,7 +73,7 @@ int main(int argc, char* argv[])
             exit(1);
         }
         for (int j = 0; j < fish_amount; j++) {
-            if (fabs(small_fish[j][0][0]) < field_x && fabs(small_fish[j][0][1] < field_y)) {
+            if (fabs(small_fish[j][0][0]) < field_x && fabs(small_fish[j][0][1]) < field_y) {
                 // 描画範囲内のもののみ出力
                 fprintf(fp, "%f, %f, %f, %f, x, y, v_x, v_y\n"
                         , small_fish[j][0][0], small_fish[j][0][1]
