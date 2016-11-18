@@ -49,10 +49,12 @@ int main(int argc, char* argv[])
         // フロッキング処理(a, \alphaを決める処理)
         for (int j = 0; j < fish_amount; j++) {
             int fish_in_view = 0;
-            double view_r = 2;
+            double view_r = 5;
             double view_theta = 2;
             double centroid_x = 0;
             double centroid_y = 0;
+            double relative_posi_vect_r = 0;
+            double relative_posi_vect_theta = 0;
             for (int k = 0; k < fish_amount; k++) {
                 if (k != j) {
                     // 視野範囲の中に入っている同種の魚を抽出
@@ -69,6 +71,16 @@ int main(int argc, char* argv[])
             }
             centroid_x = centroid_x / fish_in_view;
             centroid_y = centroid_y / fish_in_view;
+            // 相対位置に変換
+            centroid_x = centroid_x - small_fish[j][0][0];
+            centroid_y = centroid_y - small_fish[j][0][1];
+            // a, \alphaを決める
+            double dist_centroid = sqrt(centroid_x * centroid_x + centroid_y * centroid_y);
+            if (dist_centroid >= small_fish[j][1][0]) {
+                small_fish[j][2][1] = 0.001;
+            } else {
+                small_fish[j][2][1] = -0.001;
+            }
         }
 
         // 移動の処理
