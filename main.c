@@ -72,7 +72,7 @@ int main(int argc, char* argv[])
                 }
             }
             if (fish_in_view == 0) {
-                break;
+                continue;
             }
             centroid_x = centroid_x / fish_in_view;
             centroid_y = centroid_y / fish_in_view;
