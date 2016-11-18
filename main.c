@@ -69,18 +69,21 @@ int main(int argc, char* argv[])
                     }
                 }
             }
+            if (fish_in_view == 0) {
+                break;
+            }
             centroid_x = centroid_x / fish_in_view;
             centroid_y = centroid_y / fish_in_view;
             // 相対位置に変換
             centroid_x = centroid_x - small_fish[j][0][0];
             centroid_y = centroid_y - small_fish[j][0][1];
-            // a, \alphaを決める
             double dist_centroid = sqrt(centroid_x * centroid_x + centroid_y * centroid_y);
-            if (dist_centroid >= small_fish[j][1][0]) {
-                small_fish[j][2][1] = 0.001;
-            } else {
-                small_fish[j][2][1] = -0.001;
+            double centroid_theta = small_fish[j][0][2];
+            if(centroid_x != 0 || centroid_y != 0 && dist_centroid > 0.1) {
+                centroid_theta = atan2(centroid_y, centroid_x);
             }
+            // \alphaを決める
+            small_fish[j][2][1] = 50 * (centroid_theta - small_fish[j][0][2]);
         }
 
         // 移動の処理
