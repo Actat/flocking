@@ -46,7 +46,9 @@ int main(int argc, char* argv[])
     }
 
     for (int i = 0; i < max_step; i++) {
-        // フロッキング処理(a, \alphaを決める処理)
+        // フロッキング処理(\alphaを決める処理)
+        // 初期化
+        small_fish[j][2][1] = 0;
         for (int j = 0; j < fish_amount; j++) {
             int fish_in_view = 0;
             double view_r = 5;
@@ -87,8 +89,8 @@ int main(int argc, char* argv[])
                 centroid_theta = atan2(centroid_y, centroid_x);
             }
             // \alphaを決める
-            small_fish[j][2][1] = 10 * (centroid_theta - small_fish[j][0][2]) + 100 * ave_theta;
-
+            // 周囲の状況から判断して決める
+            small_fish[j][2][1] += 10 * (centroid_theta - small_fish[j][0][2]) + 100 * ave_theta;
             // 範囲外に出そうになったらUターンする
             if (fabs(small_fish[j][0][0]) > 40 || fabs(small_fish[j][0][1]) > 40) {
                 if (small_fish[j][0][0] > 40) {
