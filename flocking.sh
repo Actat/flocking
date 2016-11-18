@@ -77,5 +77,4 @@ if [ -e out.mp4 ]; then
     echo "出力が完了しました."
 else
     echo "出力に失敗したようです."
-    exit 0
 fi
