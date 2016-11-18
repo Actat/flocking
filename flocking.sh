@@ -44,9 +44,10 @@ do
         echo "set term postscript color eps enhanced" >> plotimg.gp
         echo "set output 'eps/$i.eps'" >> plotimg.gp
         echo "set size ratio 1" >> plotimg.gp
+        echo "set palette rgb 33,13,10" >> plotimg.gp
         echo "set xrange[-$field_x:$field_x]" >> plotimg.gp
         echo "set yrange[-$field_y:$field_y]" >> plotimg.gp
-        echo "plot 'dat/${i}.dat' u 1:2:3:4 w vector ti ''" >> plotimg.gp
+        echo "plot 'dat/${i}.dat' u 1:2:3:4:(sqrt(\$3*\$3+\$4*\$4)) w vector lc palette ti ''" >> plotimg.gp
     else
         echo "${i}は存在しないです."
     fi
