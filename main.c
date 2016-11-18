@@ -36,7 +36,7 @@ int main(int argc, char* argv[])
     for (int i = 0; i < fish_amount; i++) {
         small_fish[i][0][0] = ((double)rand() / RAND_MAX - 0.5) * 2 * field_x;
         small_fish[i][0][1] = ((double)rand() / RAND_MAX - 0.5) * 2 * field_y;
-        small_fish[i][0][2] = (double)rand() / RAND_MAX;
+        small_fish[i][0][2] = (double)rand() / RAND_MAX * 2 * M_PI;
         small_fish[i][1][0] = 1.67 / frame_rate;
         small_fish[i][1][1] = 0;
         small_fish[i][1][2] = 0;
