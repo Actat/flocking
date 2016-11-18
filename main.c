@@ -47,9 +47,10 @@ int main(int argc, char* argv[])
 
     for (int i = 0; i < max_step; i++) {
         // フロッキング処理(\alphaを決める処理)
-        // 初期化
-        small_fish[j][2][1] = 0;
+        // 各魚の角加速度を決める
         for (int j = 0; j < fish_amount; j++) {
+            // 初期化
+            small_fish[j][2][1] = 0;
             int fish_in_view = 0;
             double view_r = 5;
             double view_theta = 2;
