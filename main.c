@@ -58,8 +58,8 @@ int main(int argc, char* argv[])
                     // 視野範囲の中に入っている同種の魚を抽出
                     double relative_posi_vect_x = small_fish[k][0][0] - small_fish[j][0][0];
                     double relative_posi_vect_y = small_fish[k][0][1] - small_fish[j][0][1];
-                    double relative_posi_vect_r = sqrt(relative_posi_vect_x * relative_posi_vect_x + relative_posi_vect_y * relative_posi_vect_y);
-                    double relative_posi_vect_theta = acos(relative_posi_vect_x / relative_posi_vect_r);
+                    relative_posi_vect_r = sqrt(relative_posi_vect_x * relative_posi_vect_x + relative_posi_vect_y * relative_posi_vect_y);
+                    relative_posi_vect_theta = atan2(relative_posi_vect_y, relative_posi_vect_x);
                     if (relative_posi_vect_r < view_r && relative_posi_vect_theta - small_fish[j][0][2] < view_theta) {
                         fish_in_view++;
                         centroid_x += small_fish[k][0][0] + cos(small_fish[k][0][2]) * small_fish[k][1][0];
