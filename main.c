@@ -94,6 +94,12 @@ int main(int argc, char* argv[])
 
             // \omega回転
             small_fish[j][0][2] += small_fish[j][2][0];
+            while(small_fish[j][0][2] > 2 * M_PI){
+                small_fish[j][0][2] -= 2 * M_PI;
+            }
+            while(small_fish[j][0][2] < -1.0 * 2 * M_PI){
+                small_fish[j][0][2] += 2 * M_PI;
+            }
 
             // v = v + a
             small_fish[j][1][0] += small_fish[j][1][1];
