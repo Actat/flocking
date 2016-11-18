@@ -53,6 +53,7 @@ int main(int argc, char* argv[])
             double view_theta = 2;
             double centroid_x = 0;
             double centroid_y = 0;
+            double ave_theta = 0;
             double relative_posi_vect_r = 0;
             double relative_posi_vect_theta = 0;
             for (int k = 0; k < fish_amount; k++) {
@@ -66,6 +67,7 @@ int main(int argc, char* argv[])
                         fish_in_view++;
                         centroid_x += small_fish[k][0][0];
                         centroid_y += small_fish[k][0][1];
+                        ave_theta += small_fish[k][0][2];
                     }
                 }
             }
@@ -74,16 +76,18 @@ int main(int argc, char* argv[])
             }
             centroid_x = centroid_x / fish_in_view;
             centroid_y = centroid_y / fish_in_view;
+            ave_theta = ave_theta/ fish_in_view;
             // 相対位置に変換
             centroid_x = centroid_x - small_fish[j][0][0];
             centroid_y = centroid_y - small_fish[j][0][1];
+            ave_theta = ave_theta - small_fish[j][0][2];
             double dist_centroid = sqrt(centroid_x * centroid_x + centroid_y * centroid_y);
             double centroid_theta = small_fish[j][0][2];
             if(centroid_x != 0 || centroid_y != 0 && dist_centroid > 0.1) {
                 centroid_theta = atan2(centroid_y, centroid_x);
             }
             // \alphaを決める
-            small_fish[j][2][1] = 50 * (centroid_theta - small_fish[j][0][2]);
+            small_fish[j][2][1] = 10 * (centroid_theta - small_fish[j][0][2]) + 100 * ave_theta;
         }
 
         // 移動の処理
