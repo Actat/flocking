@@ -95,28 +95,28 @@ int main(int argc, char* argv[])
             small_fish[j][2][1] += 10 * (centroid_theta - small_fish[j][0][2]) + 100 * ave_theta;
             // 範囲外に出そうになったらUターンする
             if (fabs(small_fish[j][0][0]) > 40 || fabs(small_fish[j][0][1]) > 40) {
-                if (small_fish[j][0][0] > 40) {
+                if (small_fish[j][0][0] > 40 && small_fish[j][0][2] > -1 * M_PI * 2 && small_fish[j][0][2] < M_PI * 2) {
                     if (small_fish[j][0][2] > 0) {
                         small_fish[j][2][1] += 0.01;
                     } else {
                         small_fish[j][2][1] += -0.01;
                     }
                 }
-                if (small_fish[j][0][0] < -40) {
+                if (small_fish[j][0][0] < -40 && (small_fish[j][0][2] > M_PI / 2 || small_fish[j][0][2] < -1 * M_PI / 2)) {
                     if (small_fish[j][0][2] > 0) {
                         small_fish[j][2][1] += -0.01;
                     } else {
                         small_fish[j][2][1] += 0.01;
                     }
                 }
-                if (small_fish[j][0][1] > 40) {
+                if (small_fish[j][0][1] > 40 && small_fish[j][0][2] > 0) {
                     if (small_fish[j][0][2] > M_PI / 2 || small_fish[j][0][2] < -1 * M_PI / 2) {
                         small_fish[j][2][1] += 0.01;
                     } else {
                         small_fish[j][2][1] += -0.01;
                     }
                 }
-                if (small_fish[j][0][1] < -40) {
+                if (small_fish[j][0][1] < -40 && small_fish[j][0][2] < 0) {
                     if (small_fish[j][0][2] > M_PI / 2 || small_fish[j][0][2] < -1 * M_PI / 2) {
                         small_fish[j][2][1] += -0.01;
                     } else {
