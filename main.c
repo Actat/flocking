@@ -106,6 +106,12 @@ int main(int argc, char* argv[])
 
             // \omega = \omega + \alpha
             small_fish[j][2][0] += small_fish[j][2][1];
+            if (small_fish[j][2][0] > 0.1) {
+                small_fish[j][2][0] = 0.1;
+            }
+            if (small_fish[j][2][0] < -0.1) {
+                small_fish[j][2][0] = -0.1;
+            }
         }
 
         // ファイル出力
