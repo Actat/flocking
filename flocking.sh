@@ -1,11 +1,11 @@
 #!/bin/sh
 
-video_length=5
+video_length=30
 frame_rate=10
 frame_number=`expr $video_length \* $frame_rate`
 field_x=50
 field_y=50
-fish_amount=50
+fish_amount=200
 
 rm -f out.mp4
 rm -rf dat
@@ -75,7 +75,6 @@ fi
 
 if [ -e out.mp4 ]; then
     echo "出力が完了しました."
-    totem out.mp4 &
 else
     echo "出力に失敗したようです."
     exit 0
